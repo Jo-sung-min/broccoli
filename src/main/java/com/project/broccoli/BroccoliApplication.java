@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.example.smStart.mapper")  // 패키지 경로 확인!
+@MapperScan("com.project.broccoli.mapper")  // 패키지 경로 확인!
 public class BroccoliApplication {
 
 	public static void main(String[] args) {

@@ -12,4 +12,5 @@ import java.util.List;
 public interface UserInfoMapper {
 
     List<UserInfo> findAll();
+
 }
