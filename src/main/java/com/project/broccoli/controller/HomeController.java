@@ -25,9 +25,10 @@ public class HomeController {
 
         log.info("호출 !!!!!!!!!!!!{}!",test);
         log.info("호출 !!!!!!!!!!!!{}!",test);
+        log.info("호출 !!!!!!!!!!!!{}!",test);
 
 
-        return "home.html";
+        return "home";
 
     }
 

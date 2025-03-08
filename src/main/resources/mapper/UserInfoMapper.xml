@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.smStart.mapper.UserInfoMapper">
+<mapper namespace="com.project.broccoli.mapper.UserInfoMapper">
 
-    <select id="findAll" resultType="com.example.smStart.domain.UserInfo">
+    <select id="findAll" resultType="com.project.broccoli.domain.UserInfo">
         SELECT * FROM tb_sso_user_sync
     </select>
 
