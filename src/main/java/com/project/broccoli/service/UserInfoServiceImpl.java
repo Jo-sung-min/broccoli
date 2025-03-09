@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -19,5 +20,13 @@ public class UserInfoServiceImpl implements UserInfoService{
     @Override
     public List<UserInfo> getAllUsers() {
         return userInfoMapper.findAll();
+    }
+
+    @Override
+    public Optional<UserInfo> oneUser() {
+
+        return getAllUsers().stream()
+                .filter(m -> m.getUSER_NM().equals("성민"))
+                .findFirst();
     }
 }
