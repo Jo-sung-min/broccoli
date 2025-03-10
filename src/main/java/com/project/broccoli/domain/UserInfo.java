@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class UserInfo {
-    private String USER_ID;
-    private String USER_NM;
-    private String EML_ADDR;
+    private String userId;
+    private String userName;
+    private String emlAddr;
+    private String isAdmin;
 }
