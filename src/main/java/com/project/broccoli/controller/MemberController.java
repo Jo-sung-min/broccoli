@@ -2,12 +2,14 @@ package com.project.broccoli.controller;
 
 import com.project.broccoli.domain.UserInfo;
 import com.project.broccoli.mapper.MemberMapper;
+import com.project.broccoli.pot.util.PotSessionUtils;
 import com.project.broccoli.pot.util.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,12 +26,35 @@ public class MemberController {
     final private MemberMapper memberMapper;
 
 
-    @RequestMapping("/login")
-    @ResponseBody
-    public Map<String,Object> Login(
+    @RequestMapping("/saveUserInfo")
+    public String saveUserInfo(
             final HttpServletResponse response,
             final HttpServletRequest request,
-            @RequestParam final Map<String,Object> maps) throws Exception {
+            final UserInfo userInfo,
+            @RequestParam final Map<String, Object> maps) throws Exception {
+
+        log.debug("==========================================");
+        log.debug("파라미터 확인 maps {}  =================",maps);
+        log.debug("==========================================");
+        Boolean existId = memberMapper.isExistId(maps);
+        if(existId){
+            // 신규 회원
+            memberMapper.saveMember(maps);
+        }else {
+            // 회원 정보 업데이트
+            memberMapper.updateMember(maps);
+        }
+
+        return "redirect:/";
+    }
+
+    @RequestMapping("/login")
+    @ResponseBody
+    public Map<String, Object> Login(
+            final HttpServletResponse response,
+            final HttpServletRequest request,
+            @RequestParam final Map<String, Object> maps) throws Exception {
+
         // 회원테이블 체크
         final String chkId = memberMapper.findLoginInfo();
 
@@ -37,9 +62,9 @@ public class MemberController {
             maps.put("result", "1");
         } else {
             // 패스워드 체크
-            final String encrptedPwd= maps.get("p_password").toString() ;
+            final String encrptedPwd = maps.get("p_password").toString();
 
-            maps.put("pwd",encrptedPwd);
+            maps.put("pwd", encrptedPwd);
             final UserInfo loginUserInfo = memberMapper.findUserLoginCheckPwd(maps);
             if (loginUserInfo == null) {
                 maps.put("result", "2");
@@ -72,8 +97,6 @@ public class MemberController {
         if (legacySession != null && !legacySession.isNew()) {
             legacySession.invalidate();
         }
-
-
 
     }
 

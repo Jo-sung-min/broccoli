@@ -11,5 +11,9 @@ public interface MemberMapper {
 
     public UserInfo findUserLoginCheckPwd(Map<String, Object> maps);
 
+    public Boolean isExistId(Map<String, Object> maps);
 
+    public void saveMember(Map<String, Object> maps);
+
+    public void updateMember(Map<String, Object> maps);
 }

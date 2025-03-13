@@ -8,13 +8,22 @@
     </select>
 
 
-    <select id="findUserLoginCheckPwd" resultType="com.project.broccoli.domain.UserInfo">
+    <select id="findUserLoginCheckPwd" resultType="String">
         SELECT
             USER_ID as userID
         FROM
             tb_sso_user_sync
         WHERE
             USER_ID =#{userId}
+    </select>
+
+    <select id="findUserLoginCheckPwd" resultType="com.project.broccoli.domain.UserInfo">
+        SELECT
+            USER_ID as userID
+        FROM
+            tb_sso_user_sync
+        WHERE
+            PW =#{userId}
     </select>
 
 </mapper>
