@@ -41,6 +41,17 @@ public class EventUtils {
         return EventUtils.eventUtils;
     }
 
+    public String getAttendCode() {
+        return ATTEND_EVT_SNO;
+    }
+
+    public String getAttendTestCode(){
+        return ATTEND_TEST_EVT_SNO;
+    }
+
+    public String getSeasonEvtCode(){
+        return SEASON_EVT_SNO;
+    }
 
 
     public static boolean isEventAdmin(String userId){
